@@ -1,5 +1,5 @@
 import React from "react";
 
 export const App = () => {
-	return <div>App</div>;
+	return <div>Phonebook</div>;
 };
