@@ -9,8 +9,8 @@ export const globalStyles = css`
 	body {
 		min-height: 100vh;
 		font-family: "Roboto", sans-serif;
-		background-color: #333333;
-		color: #fff;
+		background-color: #fdfdfd;
+		color: #333333;
 		margin: 0;
 	}
 
@@ -55,10 +55,7 @@ export const globalStyles = css`
 	}
 
 	.container {
-		width: 860px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+		max-width: 1180px;
+		margin: 200px auto;
 	}
 `;
