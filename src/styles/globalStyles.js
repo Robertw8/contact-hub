@@ -1,9 +1,10 @@
 import { css } from "@emotion/react";
+import Roboto from "../assets/fonts/Roboto-Regular.ttf";
 
 export const globalStyles = css`
 	@font-face {
 		font-family: "Roboto";
-		src: url("src/assets/fonts/Roboto-Regular.ttf") format("truetype");
+		src: url(${Roboto}) format("truetype");
 	}
 
 	body {
