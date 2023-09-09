@@ -6,13 +6,10 @@ import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
 export class ContactForm extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			name: "",
-			number: "",
-		};
-	}
+	state = {
+		name: "",
+		number: "",
+	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
