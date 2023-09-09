@@ -11,17 +11,13 @@ import Notiflix from "notiflix";
 import { nanoid } from "nanoid";
 
 export class App extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			contacts: [
-				{ id: nanoid(), name: "Rosie Simpson", number: "459-12-56" },
-				{ id: nanoid(), name: "Hermione Kline", number: "443-89-12" },
-			],
-			filter: "",
-		};
-	}
+	state = {
+		contacts: [
+			{ id: nanoid(), name: "Rosie Simpson", number: "459-12-56" },
+			{ id: nanoid(), name: "Hermione Kline", number: "443-89-12" },
+		],
+		filter: "",
+	};
 
 	handleSubmit = (newContact) => {
 		const isDuplicate = this.state.contacts.some(
