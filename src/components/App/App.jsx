@@ -20,7 +20,7 @@ export class App extends Component {
 	};
 
 	handleSubmit = (newContact) => {
-		const isDuplicate = this.state.contacts.some(
+		const isDuplicate = this.state.contacts.find(
 			(contact) => contact.name.toLowerCase() === newContact.name.toLowerCase() || contact.number === newContact.number,
 		);
 
