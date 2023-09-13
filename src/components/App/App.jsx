@@ -12,12 +12,14 @@ import { nanoid } from "nanoid";
 
 export class App extends Component {
 	state = {
-		contacts: [
-			{ id: nanoid(), name: "Rosie Simpson", number: "459-12-56" },
-			{ id: nanoid(), name: "Hermione Kline", number: "443-89-12" },
-		],
+		contacts: [],
 		filter: "",
 	};
+
+	componentDidMount() {
+		const savedContacts = localStorage.getItem("contacts");
+		this.setState({ contacts: JSON.parse(savedContacts) });
+	}
 
 	handleSubmit = (newContact) => {
 		const isDuplicate = this.state.contacts.find(
@@ -32,6 +34,7 @@ export class App extends Component {
 		this.setState((prev) => ({
 			contacts: [...prev.contacts, newContact],
 		}));
+		localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
 	};
 
 	handleDelete = (id) => {
