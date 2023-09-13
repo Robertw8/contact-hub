@@ -18,7 +18,7 @@ export class App extends Component {
 
 	componentDidMount() {
 		const savedContacts = localStorage.getItem("contacts");
-		this.setState({ contacts: JSON.parse(savedContacts) });
+		this.setState({ contacts: savedContacts ? JSON.parse(savedContacts) : [] });
 	}
 
 	handleSubmit = (newContact) => {
