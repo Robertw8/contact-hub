@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ContactForm } from "../ContactForm/ContactForm";
 import { ContactList } from "../ContactList/ContactList";
 import { Filter } from "../Filter/Filter";
@@ -10,15 +10,10 @@ import { ContactsWrapper, Title } from "./App.styled";
 import Notiflix from "notiflix";
 
 export const App = () => {
-	const [contacts, setContacts] = useState([]);
+	const [contacts, setContacts] = useState(() => JSON.parse(localStorage.getItem("contacts")) || []);
 	const [filter, setFilter] = useState("");
 
-	useEffect(() => {
-		const savedContacts = localStorage.getItem("contacts");
-		setContacts(savedContacts ? JSON.parse(savedContacts) : []);
-	}, []);
-
-	const handleSubmit = (newContact) => {
+	const submit = (newContact) => {
 		const isDuplicate = contacts.find(
 			(contact) => contact.name.toLowerCase() === newContact.name.toLowerCase() || contact.number === newContact.number,
 		);
@@ -29,16 +24,10 @@ export const App = () => {
 		}
 
 		setContacts((prevContacts) => [...prevContacts, newContact]);
-		localStorage.setItem("contacts", JSON.stringify(contacts));
 	};
 
 	const handleDelete = (id) => {
 		setContacts((prevContacts) => prevContacts.filter((contact) => contact.id !== id));
-	};
-
-	const handleFilterChange = (e) => {
-		const filter = e.target.value;
-		setFilter(filter);
 	};
 
 	const filteredContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
@@ -47,10 +36,10 @@ export const App = () => {
 		<div className='container'>
 			<Global styles={globalStyles} />
 			<Title>Phonebook</Title>
-			<ContactForm onSubmit={handleSubmit} />
+			<ContactForm onSubmit={submit} />
 			<ContactsWrapper>
 				<Title>Contacts</Title>
-				<Filter filter={filter} onChange={handleFilterChange} />
+				<Filter filter={filter} onChange={(e) => setFilter(e.target.value)} />
 				<ContactList contacts={filteredContacts} onDelete={handleDelete} />
 			</ContactsWrapper>
 		</div>
