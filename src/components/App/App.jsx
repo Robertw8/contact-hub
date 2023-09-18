@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { ContactForm } from "../ContactForm/ContactForm";
 import { ContactList } from "../ContactList/ContactList";
 import { Filter } from "../Filter/Filter";
@@ -8,21 +8,18 @@ import { globalStyles } from "../../styles/globalStyles";
 import { ContactsWrapper, Title } from "./App.styled";
 
 import Notiflix from "notiflix";
-import { nanoid } from "nanoid";
 
-export class App extends Component {
-	state = {
-		contacts: [],
-		filter: "",
-	};
+export const App = () => {
+	const [contacts, setContacts] = useState([]);
+	const [filter, setFilter] = useState("");
 
-	componentDidMount() {
+	useEffect(() => {
 		const savedContacts = localStorage.getItem("contacts");
-		this.setState({ contacts: savedContacts ? JSON.parse(savedContacts) : [] });
-	}
+		setContacts(savedContacts ? JSON.parse(savedContacts) : []);
+	}, []);
 
-	handleSubmit = (newContact) => {
-		const isDuplicate = this.state.contacts.find(
+	const handleSubmit = (newContact) => {
+		const isDuplicate = contacts.find(
 			(contact) => contact.name.toLowerCase() === newContact.name.toLowerCase() || contact.number === newContact.number,
 		);
 
@@ -31,38 +28,31 @@ export class App extends Component {
 			return;
 		}
 
-		this.setState((prev) => ({
-			contacts: [...prev.contacts, newContact],
-		}));
-		localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+		setContacts((prevContacts) => [...prevContacts, newContact]);
+		localStorage.setItem("contacts", JSON.stringify(contacts));
 	};
 
-	handleDelete = (id) => {
-		this.setState((prevState) => ({
-			contacts: prevState.contacts.filter((contact) => contact.id !== id),
-		}));
+	const handleDelete = (id) => {
+		setContacts((prevContacts) => prevContacts.filter((contact) => contact.id !== id));
 	};
 
-	handleFilterChange = (e) => {
+	const handleFilterChange = (e) => {
 		const filter = e.target.value;
-		this.setState({ filter });
+		setFilter(filter);
 	};
 
-	render() {
-		const { contacts, filter } = this.state;
-		const filteredContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
+	const filteredContacts = contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()));
 
-		return (
-			<div className='container'>
-				<Global styles={globalStyles} />
-				<Title>Phonebook</Title>
-				<ContactForm onSubmit={this.handleSubmit} />
-				<ContactsWrapper>
-					<Title>Contacts</Title>
-					<Filter filter={filter} onChange={this.handleFilterChange} />
-					<ContactList contacts={filteredContacts} onDelete={this.handleDelete} />
-				</ContactsWrapper>
-			</div>
-		);
-	}
-}
+	return (
+		<div className='container'>
+			<Global styles={globalStyles} />
+			<Title>Phonebook</Title>
+			<ContactForm onSubmit={handleSubmit} />
+			<ContactsWrapper>
+				<Title>Contacts</Title>
+				<Filter filter={filter} onChange={handleFilterChange} />
+				<ContactList contacts={filteredContacts} onDelete={handleDelete} />
+			</ContactsWrapper>
+		</div>
+	);
+};
