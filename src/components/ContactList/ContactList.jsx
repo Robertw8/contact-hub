@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { List, Item } from "./ContactList.styled";
 import { nanoid } from "nanoid";
 
-export const ContactList = ({ contacts, onDelete, updateContacts }) => {
+export const ContactList = ({ contacts, onDelete }) => {
 	useEffect(() => {
 		localStorage.setItem("contacts", JSON.stringify(contacts));
 	}, [contacts]);
