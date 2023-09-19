@@ -152,7 +152,7 @@ attempted value: ${a}
 	box-shadow: 0px 2px 4px 2px #33333333;
 `,s6=({contacts:e,onDelete:t})=>(k.useEffect(()=>{localStorage.setItem("contacts",JSON.stringify(e))},[e]),_.jsx(i6,{children:e.map(n=>_.jsxs(a6,{children:[n.name," (",n.number,")",_.jsx(Vk,{"aria-label":"delete",size:"medium",onClick:()=>t(n.id),children:_.jsx(Zh,{color:"warning"})})]},Vm()))})),l6=Cn.div`
 	width: 25%;
-`,u6=({filter:e,onChange:t})=>_.jsx(l6,{children:_.jsx(Hu,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:e,onChange:t})}),c6="/goit-react-hw-03-phonebook/assets/Roboto-Regular-4e147ab6.ttf",f6=xh`
+`,u6=({filter:e,onChange:t})=>_.jsx(l6,{children:_.jsx(Hu,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:e,onChange:t})}),c6="/goit-react-hw-04-phonebook/assets/Roboto-Regular-4e147ab6.ttf",f6=xh`
 	@font-face {
 		font-family: "Roboto";
 		src: url(${c6}) format("truetype");
