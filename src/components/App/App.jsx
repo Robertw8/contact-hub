@@ -13,7 +13,7 @@ export const App = () => {
 	const [contacts, setContacts] = useState(() => JSON.parse(localStorage.getItem("contacts")) || []);
 	const [filter, setFilter] = useState("");
 
-	const submit = (newContact) => {
+	const handleSubmit = (newContact) => {
 		const isDuplicate = contacts.find(
 			(contact) => contact.name.toLowerCase() === newContact.name.toLowerCase() || contact.number === newContact.number,
 		);
@@ -36,7 +36,7 @@ export const App = () => {
 		<div className='container'>
 			<Global styles={globalStyles} />
 			<Title>Phonebook</Title>
-			<ContactForm onSubmit={submit} />
+			<ContactForm onSubmit={handleSubmit} />
 			<ContactsWrapper>
 				<Title>Contacts</Title>
 				<Filter filter={filter} onChange={(e) => setFilter(e.target.value)} />
