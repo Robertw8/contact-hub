@@ -10,8 +10,7 @@ import { getFilter } from "../../redux/filter/filterSlice";
 export const ContactList = () => {
 	const persistContacts = Object.values(useSelector(getContacts));
 	const contacts = persistContacts.slice(0, persistContacts.length - 1);
-	const persistFilter = Object.values(useSelector(getFilter));
-	const filter = persistFilter.slice(0, persistFilter.length - 1).join("");
+	const filter = useSelector(getFilter);
 	const dispatch = useDispatch();
 
 	const handleDeleteClick = (id) => {

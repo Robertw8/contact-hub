@@ -7,8 +7,7 @@ import { getFilter, setFilter } from "../../redux/filter/filterSlice";
 
 export const Filter = () => {
 	const dispatch = useDispatch();
-	const persistFilter = Object.values(useSelector(getFilter));
-	const filter = persistFilter.slice(0, persistFilter.length - 1).join("");
+	const filter = useSelector(getFilter);
 
 	const handleChange = ({ target }) => {
 		const value = target.value;
