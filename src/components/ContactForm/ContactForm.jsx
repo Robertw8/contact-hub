@@ -1,52 +1,51 @@
 import React, { useState } from "react";
-import { nanoid } from "nanoid";
-import * as yup from "yup";
 import { Form } from "./ContactForm.styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
-const schema = yup.object().shape({
-	name: yup
-		.string()
-		.required("Name is required")
-		.matches(/^[a-zA-Z-' ]+$/, "Invalid name format"),
-	number: yup
-		.string()
-		.required("Phone number is required")
-		.matches(/^[0-9+()-\s]+$/, "Invalid phone number format"),
-});
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contacts/contactsSlice";
+import { schema } from "./validationSchema";
+import { useSelector } from "react-redux";
+import { getContacts } from "../../redux/contacts/contactsSlice";
+import Notiflix from "notiflix";
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
 	const [name, setName] = useState("");
-	const [number, setNumber] = useState("");
+	const [phone, setPhone] = useState("");
 	const [errors, setErrors] = useState({});
+	const dispatch = useDispatch();
+	const persistContacts = Object.values(useSelector(getContacts));
+	const contacts = persistContacts.slice(0, persistContacts.length - 1);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
-			await schema.validate({ name, number }, { abortEarly: false });
+			await schema.validate({ name, phone }, { abortEarly: false });
 
-			const newContact = {
-				id: nanoid(),
-				name,
-				number,
-			};
+			const isDuplicate = contacts.find(
+				(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
+			);
 
-			onSubmit(newContact);
+			if (isDuplicate) {
+				Notiflix.Notify.info("This contact already exists");
+				return;
+			}
+
+			dispatch(addContact(name, phone));
 
 			setName("");
-			setNumber("");
+			setPhone("");
 			setErrors({});
-		} catch (err) {
+		} catch (error) {
 			const validationErrors = {};
-			err.inner.forEach((e) => {
+			error.inner.forEach((e) => {
 				validationErrors[e.path] = e.message;
 			});
 			setErrors(validationErrors);
 		}
 	};
-
 	return (
 		<>
 			<Form name='contact' onSubmit={handleSubmit}>
@@ -58,7 +57,7 @@ export const ContactForm = ({ onSubmit }) => {
 					placeholder='Enter name...'
 					required
 					value={name}
-					onChange={(e) => setName(e.target.value)}
+					onChange={({ target }) => setName(target.value)}
 					error={!!errors.name}
 					helperText={errors.name}
 				/>
@@ -66,14 +65,15 @@ export const ContactForm = ({ onSubmit }) => {
 					id='outlined'
 					label='Phone'
 					type='tel'
-					name='number'
+					name='phone'
 					placeholder='Enter phone number...'
 					required
-					value={number}
-					onChange={(e) => setNumber(e.target.value)}
-					error={!!errors.number}
-					helperText={errors.number}
+					value={phone}
+					onChange={({ target }) => setPhone(target.value)}
+					error={!!errors.phone}
+					helperText={errors.phone}
 				/>
+
 				<Button variant='contained' color='info' type='submit' style={{ width: "40%", alignSelf: "flex-end" }}>
 					Add contact
 				</Button>
