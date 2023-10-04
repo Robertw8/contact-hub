@@ -181,7 +181,7 @@ Notiflix needs to be appended to the "<`+b+'>" element, but you called it before
 	box-shadow: 0px 2px 4px 2px #33333333;
 `,D4="",Sv=av({name:"filter",initialState:D4,reducers:{setFilter:{reducer(e,t){return t.payload},prepare(e){return{payload:e}}}}}),{setFilter:B4}=Sv.actions,W4=Sv.reducer,Cv=e=>e.filter,U4=()=>{const e=Object.values(Ss(fv)),t=e.slice(0,e.length-1),n=Ss(Cv),r=Od(),o=a=>{r(ME(a))},i=t.filter(a=>a.name.toLowerCase().includes(n.toLowerCase())||a.phone.toString().includes(n));return _.jsx(L4,{children:i.map(a=>_.jsxs(j4,{children:[a.name," (",a.phone,")",_.jsx(RS,{"aria-label":"delete",size:"medium",onClick:()=>o(a.id),children:_.jsx(kv,{color:"warning"})})]},a.id))})},H4=_n.div`
 	width: 25%;
-`,V4=()=>{const e=Od(),t=Ss(Cv),n=({target:r})=>{const o=r.value;e(B4(o))};return _.jsx(H4,{children:_.jsx(Uc,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:t,onChange:n})})},X4="/goit-react-hw-06-phonebook/assets/Roboto-Regular-4e147ab6.ttf",K4=cy`
+`,V4=()=>{const e=Od(),t=Ss(Cv),n=({target:r})=>{const o=r.value;e(B4(o))};return _.jsx(H4,{children:_.jsx(Uc,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:t,onChange:n})})},X4="/goit-react-hw-07-phonebook/assets/Roboto-Regular-4e147ab6.ttf",K4=cy`
 	@font-face {
 		font-family: "Roboto";
 		src: url(${X4}) format("truetype");
