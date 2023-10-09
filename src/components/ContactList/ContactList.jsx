@@ -8,8 +8,7 @@ import { deleteContact, getContacts } from "../../redux/contacts/contactsSlice";
 import { getFilter } from "../../redux/filter/filterSlice";
 
 export const ContactList = () => {
-	const persistContacts = Object.values(useSelector(getContacts));
-	const contacts = persistContacts.slice(0, persistContacts.length - 1);
+	const contacts = useSelector(getContacts);
 	const filter = useSelector(getFilter);
 	const dispatch = useDispatch();
 
