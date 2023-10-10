@@ -204,7 +204,7 @@ Notiflix needs to be appended to the "<`+b+'>" element, but you called it before
 	transform: translateY(200%) !important;
 `,CN="",w1=jv({name:"filter",initialState:CN,reducers:{setFilter:{reducer(e,t){return t.payload},prepare(e){return{payload:e}}}}}),{setFilter:EN}=w1.actions,RN=w1.reducer,k1=e=>e.filter,NN=()=>{const{contacts:e,isLoading:t}=Ls(g1),n=Ls(k1),r=rp();k.useEffect(()=>{r(rs())},[r]);const o=a=>{r(is(a))},i=e.filter(a=>a.name.toLowerCase().includes(n.toLowerCase())||a.phone.toString().includes(n));return t?z.jsx(SN,{color:"#36d7b7"}):z.jsx(wN,{children:i.map(a=>z.jsxs(kN,{children:[a.name," (",a.phone,")",z.jsx(C5,{"aria-label":"delete",size:"medium",onClick:()=>o(a.id),children:z.jsx(x1,{color:"warning"})})]},a.id))})},PN=En.div`
 	width: 25%;
-`,TN=()=>{const e=rp(),t=Ls(k1),n=({target:r})=>{const o=r.value;e(EN(o))};return z.jsx(PN,{children:z.jsx(gf,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:t,onChange:n})})},ON="/goit-react-hw-07-phonebook/assets/Roboto-Regular-4e147ab6.ttf",$N=Uy`
+`,TN=()=>{const e=rp(),t=Ls(k1),n=({target:r})=>{const o=r.value;e(EN(o))};return z.jsx(PN,{children:z.jsx(gf,{id:"outlined",label:"Search",type:"text",placeholder:"Search contacts...",value:t,onChange:n})})},ON="/goit-react-hw-08-phonebook/assets/Roboto-Regular-4e147ab6.ttf",$N=Uy`
 	@font-face {
 		font-family: "Roboto";
 		src: url(${ON}) format("truetype");
