@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
+import { HashLoader } from "react-spinners";
 
 const List = styled.ul`
+	position: relative;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 40px;
@@ -18,4 +20,10 @@ const Item = styled.li`
 	box-shadow: 0px 2px 4px 2px #33333333;
 `;
 
-export { List, Item };
+const StyledLoader = styled(HashLoader)`
+	position: absolute;
+	left: 50%;
+	transform: translateY(200%) !important;
+`;
+
+export { List, Item, StyledLoader };
