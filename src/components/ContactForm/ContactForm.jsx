@@ -3,11 +3,11 @@ import { Form } from "./ContactForm.styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
-import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/contactsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { addContact } from "../../redux/operations";
 import { schema } from "./validationSchema";
-import { useSelector } from "react-redux";
-import { getContacts } from "../../redux/contacts/contactsSlice";
+import { selectContacts } from "../../redux/contacts/contactsSlice";
 import Notiflix from "notiflix";
 
 export const ContactForm = () => {
@@ -15,8 +15,7 @@ export const ContactForm = () => {
 	const [phone, setPhone] = useState("");
 	const [errors, setErrors] = useState({});
 	const dispatch = useDispatch();
-	const persistContacts = Object.values(useSelector(getContacts));
-	const contacts = persistContacts.slice(0, persistContacts.length - 1);
+	const { contacts } = useSelector(selectContacts);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -33,7 +32,7 @@ export const ContactForm = () => {
 				return;
 			}
 
-			dispatch(addContact(name, phone));
+			dispatch(addContact({ id: nanoid(), name, phone }));
 
 			setName("");
 			setPhone("");
@@ -44,6 +43,7 @@ export const ContactForm = () => {
 				validationErrors[e.path] = e.message;
 			});
 			setErrors(validationErrors);
+			console.warn(error);
 		}
 	};
 	return (
