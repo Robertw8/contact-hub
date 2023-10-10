@@ -1,6 +1,10 @@
 import styled from "@emotion/styled";
 
-const List = styled.ul``;
+const List = styled.ul`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+`;
 
 const Item = styled.li`
 	margin-top: 20px;
