@@ -1,0 +1,1 @@
+import{j as s}from"./index-7cff878b.js";const r=()=>s.jsx("div",{className:"container",children:s.jsxs("form",{style:{display:"flex",gap:"40px"},children:[s.jsxs("label",{children:["Email or username",s.jsx("input",{type:"text"})]}),s.jsxs("label",{children:["Password",s.jsx("input",{type:"password"})]})]})});export{r as default};
