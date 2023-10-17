@@ -1,34 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { selectIsLoggedIn, setCredentials } from "../redux/auth/authSlice";
+import { selectToken, setCredentials } from "../redux/auth/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useSignupMutation } from "../redux/auth/operations";
 
 const RegisterPage = () => {
-	const [userData, setUserData] = useState({
-		name: "",
-		email: "",
-		password: "",
-	});
-
 	const navigate = useNavigate();
-	const isLoggedIn = useSelector(selectIsLoggedIn);
+	const TOKEN = useSelector(selectToken);
 	const dispatch = useDispatch();
-	const [signup] = useSignupMutation();
+	const [signup, { data, error, isLoading }] = useSignupMutation();
 
-	if (isLoggedIn) {
-		navigate("/");
+	useEffect(() => {
+		if (TOKEN) navigate("/");
 		return;
-	}
+	}, [TOKEN, navigate]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		setUserData({
+		const userData = {
 			name: e.target.elements[0].value,
 			email: e.target.elements[1].value,
 			password: e.target.elements[2].value,
-		});
+		};
 
 		try {
 			const response = await signup(userData);
@@ -36,7 +30,7 @@ const RegisterPage = () => {
 
 			dispatch(setCredentials({ userData, token }));
 		} catch (error) {
-			console.error("Registration failed: ", error);
+			console.warn("Registration failed: ", error);
 		}
 
 		e.target.reset();
