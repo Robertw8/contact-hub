@@ -1,51 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getContacts, addContact, deleteContact } from "../operations";
-
-const contactsInitialState = {
-	contacts: [],
-	isLoading: false,
-	error: null,
-};
+import { contactsApi } from "./operations";
 
 const contactsSlice = createSlice({
 	name: "contacts",
-	initialState: contactsInitialState,
+	initialState: contactsApi.endpoints.getContacts.select(),
 	reducers: {},
 	extraReducers: (builder) => {
-		const handlePending = (state) => {
-			state.isLoading = true;
-		};
-
-		const handleFulfilled = (state, action) => {
-			state.contacts = action.payload;
-			state.isLoading = false;
-			state.error = null;
-		};
-
-		const handleRejected = (state, action) => {
-			state.error = action.error.message;
-			state.isLoading = false;
-		};
-
 		builder
-			.addCase(getContacts.pending, handlePending)
-			.addCase(getContacts.fulfilled, handleFulfilled)
-			.addCase(getContacts.rejected, handleRejected)
-			.addCase(addContact.pending, handlePending)
-			.addCase(addContact.fulfilled, (state, action) => {
-				state.contacts.push(action.payload);
-				state.isLoading = false;
+			.addMatcher(contactsApi.util.isAnyOf(getContacts, addContact, deleteContact).pending, (state) => {
+				state.isLoading = true;
 				state.error = null;
 			})
-			.addCase(addContact.rejected, handleRejected)
-			.addCase(deleteContact.pending, handlePending)
-			.addCase(deleteContact.fulfilled, (state, action) => {
-				const deletedContactId = action.payload.id;
-				state.contacts = state.contacts.filter((contact) => contact.id !== deletedContactId);
+			.addMatcher(contactsApi.util.isAnyOf(getContacts, addContact, deleteContact).fulfilled, (state, action) => {
 				state.isLoading = false;
-				state.error = null;
+				state.contacts = action.payload;
 			})
-			.addCase(deleteContact.rejected, handleRejected);
+			.addMatcher(contactsApi.util.isAnyOf(getContacts, addContact, deleteContact).rejected, (state, action) => {
+				state.isLoading = false;
+				state.error = action.error.message;
+			});
 	},
 });
 

@@ -3,19 +3,17 @@ import { Form } from "./ContactForm.styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 
-import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { addContact } from "../../redux/operations";
 import { schema } from "./validationSchema";
-import { selectContacts } from "../../redux/contacts/contactsSlice";
 import Notiflix from "notiflix";
 
 export const ContactForm = () => {
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [errors, setErrors] = useState({});
-	const dispatch = useDispatch();
-	const { contacts } = useSelector(selectContacts);
+	// const dispatch = useDispatch();
+	// const { contacts } = useSelector(selectContacts);
+	const contacts = [{ id: nanoid(), name: "pablo", phone: "2323" }];
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -32,7 +30,7 @@ export const ContactForm = () => {
 				return;
 			}
 
-			dispatch(addContact({ id: nanoid(), name, phone }));
+			// dispatch(addContact({ id: nanoid(), name, phone }));
 
 			setName("");
 			setPhone("");
