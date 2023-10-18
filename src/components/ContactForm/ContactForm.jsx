@@ -2,48 +2,49 @@ import React, { useState } from "react";
 import { Form } from "./ContactForm.styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-
-import { nanoid } from "@reduxjs/toolkit";
-import { schema } from "./validationSchema";
-import Notiflix from "notiflix";
+import { useDispatch } from "react-redux";
+import { useAddContactMutation } from "../../redux/contacts/operations";
+import { useToken } from "../../hooks/useToken";
 
 export const ContactForm = () => {
 	const [name, setName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [errors, setErrors] = useState({});
-	// const dispatch = useDispatch();
-	// const { contacts } = useSelector(selectContacts);
-	const contacts = [{ id: nanoid(), name: "pablo", phone: "2323" }];
+
+	const TOKEN = useToken();
+
+	const [addContact] = useAddContactMutation();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		try {
-			await schema.validate({ name, phone }, { abortEarly: false });
+			// await schema.validate({ name, phone }, { abortEarly: false });
 
-			const isDuplicate = contacts.find(
-				(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
-			);
+			// const isDuplicate = contacts.find(
+			// 	(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
+			// );
 
-			if (isDuplicate) {
-				Notiflix.Notify.info("This contact already exists");
-				return;
-			}
+			// if (isDuplicate) {
+			// 	Notiflix.Notify.info("This contact already exists");
+			// 	return;
+			// }
 
-			// dispatch(addContact({ id: nanoid(), name, phone }));
+			addContact({ name, phone });
 
-			setName("");
-			setPhone("");
-			setErrors({});
+			// setName("");
+			// setPhone("");
+			// setErrors({});
 		} catch (error) {
-			const validationErrors = {};
-			error.inner.forEach((e) => {
-				validationErrors[e.path] = e.message;
-			});
-			setErrors(validationErrors);
+			// const validationErrors = {};
+			// error.inner.forEach((e) => {
+			// 	validationErrors[e.path] = e.message;
+			// });
+			// setErrors(validationErrors);
 			console.warn(error);
 		}
 	};
+
 	return (
 		<>
 			<Form name='contact' onSubmit={handleSubmit}>
