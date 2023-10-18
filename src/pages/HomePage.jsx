@@ -2,11 +2,10 @@ import React from "react";
 import { ContactList } from "../components/ContactList/ContactList";
 import { ContactForm } from "../components/ContactForm/ContactForm";
 import { Filter } from "../components/Filter/Filter";
-import { useSelector } from "react-redux";
-import { selectToken } from "../redux/auth/authSlice";
+import { useToken } from "../hooks/useToken";
 
 const HomePage = () => {
-	const TOKEN = useSelector(selectToken);
+	const TOKEN = useToken();
 
 	return TOKEN ? (
 		<div className='container'>
