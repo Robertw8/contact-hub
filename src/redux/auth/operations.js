@@ -1,32 +1,57 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const authApi = createApi({
-	baseQuery: fetchBaseQuery({ baseUrl: "https://connections-api.herokuapp.com/users" }),
-	endpoints: (builder) => ({
-		signup: builder.mutation({
-			query: (credentials) => ({
-				url: "signup",
-				method: "POST",
-				body: credentials,
-			}),
-		}),
-		login: builder.mutation({
-			query: (credentials) => ({
-				url: "login",
-				method: "POST",
-				body: credentials,
-			}),
-		}),
-		logout: builder.mutation({
-			query: () => ({
-				url: "logout",
-				method: "POST",
-			}),
-		}),
-		// current: builder.query({
-		// 	query: () => ({ url: "current", providesTags: ["User"] }),
-		// }),
-	}),
+axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
+
+const setHeader = (token) => {
+	axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearHeader = () => {
+	axios.defaults.headers.common.Authorization = null;
+};
+
+const signup = createAsyncThunk("auth/signup", async (credentials, thunkAPI) => {
+	try {
+		const response = await axios.post("users/signup", credentials);
+
+		setHeader(response.data.token);
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
 });
 
-export const { useSignupMutation, useLoginMutation, useLogoutMutation } = authApi;
+const login = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
+	try {
+		const response = await axios.post("users/login", credentials);
+
+		setHeader(response.data.token);
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+	try {
+		const response = await axios.post("users/logout");
+
+		clearHeader();
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+const current = createAsyncThunk("auth/current", async (_, thunkAPI) => {
+	try {
+		const response = await axios.get("users/current");
+
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+export { signup, login, logout, current };

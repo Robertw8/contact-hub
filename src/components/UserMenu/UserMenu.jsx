@@ -1,16 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-// import { useCurrentQuery } from "../../redux/auth/operations";
-import { clearCredentials } from "../../redux/auth/authSlice";
+import { logout } from "../../redux/auth/operations";
 
 export const UserMenu = () => {
 	const dispatch = useDispatch();
-	// const TOKEN = useSelector(selectToken);
-
-	// const { data: currentUser, error, isLoading } = useCurrentQuery(TOKEN);
 
 	const handleLogoutClick = () => {
-		dispatch(clearCredentials());
+		dispatch(logout());
 	};
 
 	return (

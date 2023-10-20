@@ -1,34 +1,46 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const contactsApi = createApi({
-	baseQuery: fetchBaseQuery({ baseUrl: "https://connections-api.herokuapp.com/" }),
-	endpoints: (builder) => ({
-		getContacts: builder.query({
-			query: (token) => ({
-				url: "contacts",
-				method: "GET",
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}),
-		}),
-		addContact: builder.mutation({
-			query: (contactData, token) => ({
-				url: "contacts",
-				method: "POST",
-				body: contactData,
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}),
-		}),
-		deleteContact: builder.mutation({
-			query: (id) => ({
-				url: `contacts/${id}`,
-				method: "DELETE",
-			}),
-		}),
-	}),
+axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
+
+const getContacts = createAsyncThunk("contacts/getContacts", async (_, thunkAPI) => {
+	try {
+		const response = await axios.get("contacts");
+
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
 });
 
-export const { useGetContactsQuery, useAddContactMutation, useDeleteContactMutation } = contactsApi;
+const addContact = createAsyncThunk("contacts/addContact", async (user, thunkAPI) => {
+	try {
+		const response = await axios.post("contacts", user);
+
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+const deleteContact = createAsyncThunk("contacts/deleteContact", async (contactId, thunkAPI) => {
+	try {
+		const response = await axios.post(`contacts/${contactId}`);
+
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+const updateContact = createAsyncThunk("contacts/updateContact", async (contactId, thunkAPI) => {
+	try {
+		const response = await axios.put(`contacts/${contactId}`);
+
+		return response.data;
+	} catch (error) {
+		thunkAPI.rejectWithValue(error.message);
+	}
+});
+
+export { getContacts, addContact, deleteContact, updateContact };

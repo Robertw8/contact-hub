@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { selectToken, setCredentials } from "../redux/auth/authSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { useSignupMutation } from "../redux/auth/operations";
+import { useDispatch } from "react-redux";
+import { signup } from "../redux/auth/operations";
+import { useToken } from "../hooks/useToken";
 
 const RegisterPage = () => {
 	const navigate = useNavigate();
-	const TOKEN = useSelector(selectToken);
+	const TOKEN = useToken();
 	const dispatch = useDispatch();
-	const [signup, { data, error, isLoading }] = useSignupMutation();
 
 	useEffect(() => {
 		if (TOKEN) navigate("/");
@@ -23,12 +22,12 @@ const RegisterPage = () => {
 			email: e.target.elements[1].value,
 			password: e.target.elements[2].value,
 		};
+		console.log(userData);
 
 		try {
-			const response = await signup(userData);
-			const token = response.data.token;
+			const response = await dispatch(signup(userData));
 
-			dispatch(setCredentials({ userData, token }));
+			return response.data;
 		} catch (error) {
 			console.warn("Registration failed: ", error);
 		}
