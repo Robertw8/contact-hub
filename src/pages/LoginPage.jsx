@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { selectToken } from "../redux/auth/authSlice";
+import { selectToken } from "../redux/auth/selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { login } from "../redux/auth/operations";
 

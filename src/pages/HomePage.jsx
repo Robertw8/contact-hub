@@ -2,12 +2,12 @@ import React from "react";
 import { ContactList } from "../components/ContactList/ContactList";
 import { ContactForm } from "../components/ContactForm/ContactForm";
 import { Filter } from "../components/Filter/Filter";
-import { useToken } from "../hooks/useToken";
+import { useAuth } from "../hooks/useAuth";
 
 const HomePage = () => {
-	const TOKEN = useToken();
+	const { isLoggedIn } = useAuth();
 
-	return TOKEN ? (
+	return isLoggedIn ? (
 		<div className='container'>
 			<ContactForm />
 			<div>
