@@ -19,7 +19,7 @@ const contactsSlice = createSlice({
 			.addCase(getContacts.fulfilled, (state, action) => {
 				state.contacts = action.payload;
 			})
-			.addCase(getContacts.pending, (state, action) => {
+			.addCase(getContacts.pending, (state) => {
 				handlePending(state);
 			})
 			.addCase(addContact.fulfilled, (state, action) => {
@@ -46,4 +46,3 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export const selectContacts = (state) => state.contacts;
