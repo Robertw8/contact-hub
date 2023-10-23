@@ -9,11 +9,11 @@ import { useToken } from "../../hooks/useToken";
 export const ContactForm = () => {
 	const dispatch = useDispatch();
 
-	const [contactData, setContactData] = useState({ name: "", phone: "" });
+	// const [contactData, setContactData] = useState({ name: "", phone: "" });
 
 	const [errors, setErrors] = useState({});
 
-	const TOKEN = useToken().token;
+	const TOKEN = useToken();
 
 	// const [contact] = addContact();
 
@@ -32,6 +32,11 @@ export const ContactForm = () => {
 			// setName("");
 			// setPhone("");
 			// setErrors({});
+
+			const contactData = {
+				name: e.target.elements[0].value,
+				number: e.target.elements[2].value,
+			};
 
 			dispatch(addContact(contactData));
 		} catch (error) {
@@ -54,10 +59,11 @@ export const ContactForm = () => {
 					name='name'
 					placeholder='Enter name...'
 					required
-					value={contactData.name}
-					onChange={({ target }) => setContactData({ ...contactData, name: target.value })}
+					// value={contactData.name}
+					// onChange={({ target }) => setContactData({  name: target.value })}
 					error={!!errors.name}
 					helperText={errors.name}
+					autoComplete='new-password'
 				/>
 				<TextField
 					id='outlined'
@@ -66,10 +72,11 @@ export const ContactForm = () => {
 					name='phone'
 					placeholder='Enter phone number...'
 					required
-					value={contactData.phone}
-					onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
+					// value={contactData.phone}
+					// onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
 					error={!!errors.phone}
 					helperText={errors.phone}
+					autoComplete='new-password'
 				/>
 
 				<Button variant='contained' color='info' type='submit' style={{ width: "40%", alignSelf: "flex-end" }}>
