@@ -3,11 +3,11 @@ import TextField from "@mui/material/TextField";
 import { FilterWrapper } from "./Filter.styled";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getFilter, setFilter } from "../../redux/filter/filterSlice";
+import { selectFilter, setFilter } from "../../redux/filter/filterSlice";
 
 export const Filter = () => {
 	const dispatch = useDispatch();
-	const filter = useSelector(getFilter);
+	const filter = useSelector(selectFilter);
 
 	const handleChange = ({ target }) => {
 		const value = target.value;
