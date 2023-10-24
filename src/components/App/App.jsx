@@ -2,9 +2,7 @@ import React, { lazy, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { SharedLayout } from "../SharedLayout/SharedLayout";
 import { useDispatch } from "react-redux";
-import { useAuth } from "../../hooks/useAuth";
 import { currentUser } from "../../redux/auth/operations";
-// import { Background } from "../Background/Background";
 // import { RestrictedRoute } from "../RestrictedRoute";
 // import { PrivateRoute } from "../PrivateRoute";
 
