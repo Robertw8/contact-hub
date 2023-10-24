@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Form } from "./ContactForm.styled";
-import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { useToken } from "../../hooks/useToken";
@@ -13,7 +11,7 @@ export const ContactForm = () => {
 
 	const [errors, setErrors] = useState({});
 
-	const TOKEN = useToken();
+	// const TOKEN = useToken();
 
 	// const [contact] = addContact();
 
@@ -35,10 +33,11 @@ export const ContactForm = () => {
 
 			const contactData = {
 				name: e.target.elements[0].value,
-				number: e.target.elements[2].value,
+				number: e.target.elements[1].value,
 			};
 
 			dispatch(addContact(contactData));
+			e.target.reset();
 		} catch (error) {
 			// const validationErrors = {};
 			// error.inner.forEach((e) => {
@@ -52,7 +51,7 @@ export const ContactForm = () => {
 	return (
 		<>
 			<Form name='contact' onSubmit={handleSubmit}>
-				<TextField
+				<input
 					id='outlined'
 					label='Name'
 					type='text'
@@ -61,11 +60,11 @@ export const ContactForm = () => {
 					required
 					// value={contactData.name}
 					// onChange={({ target }) => setContactData({  name: target.value })}
-					error={!!errors.name}
-					helperText={errors.name}
+					// error={!!errors.name}
+					// helperText={errors.name}
 					autoComplete='new-password'
 				/>
-				<TextField
+				<input
 					id='outlined'
 					label='Phone'
 					type='tel'
@@ -74,14 +73,14 @@ export const ContactForm = () => {
 					required
 					// value={contactData.phone}
 					// onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
-					error={!!errors.phone}
-					helperText={errors.phone}
+					// error={!!errors.phone}
+					// helperText={errors.phone}
 					autoComplete='new-password'
 				/>
 
-				<Button variant='contained' color='info' type='submit' style={{ width: "40%", alignSelf: "flex-end" }}>
+				<button color='info' type='submit' style={{ width: "40%", alignSelf: "flex-end" }}>
 					Add contact
-				</Button>
+				</button>
 			</Form>
 		</>
 	);
