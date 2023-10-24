@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../redux/auth/operations";
 import { useToken } from "../hooks/useToken";
+import { Link } from "react-router-dom";
+import { Background } from "../components/Background/Background";
+import { RegisterForm } from "../components/RegisterForm/RegisterForm";
 
 const RegisterPage = () => {
 	const navigate = useNavigate();
@@ -22,7 +25,6 @@ const RegisterPage = () => {
 			email: e.target.elements[1].value,
 			password: e.target.elements[2].value,
 		};
-		console.log(userData);
 
 		try {
 			const response = await dispatch(signup(userData));
@@ -36,23 +38,10 @@ const RegisterPage = () => {
 	};
 
 	return (
-		<div className='container'>
-			<form style={{ display: "flex", gap: "40px" }} onSubmit={handleSubmit}>
-				<label>
-					Name
-					<input type='text' />
-				</label>
-				<label>
-					Email
-					<input type='email' />
-				</label>
-				<label>
-					Password
-					<input type='password' />
-				</label>
-				<button type='submit'>Register</button>
-			</form>
-		</div>
+		<>
+			<Background />
+			<RegisterForm />
+		</>
 	);
 };
 
