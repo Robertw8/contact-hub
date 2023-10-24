@@ -3,12 +3,13 @@ import { ContactList } from "../components/ContactList/ContactList";
 import { ContactForm } from "../components/ContactForm/ContactForm";
 import { Filter } from "../components/Filter/Filter";
 import { useAuth } from "../hooks/useAuth";
+import { Welcome } from "../components/Welcome/Welcome";
 
 const HomePage = () => {
 	const { isLoggedIn } = useAuth();
 
 	return isLoggedIn ? (
-		<div className='container'>
+		<div>
 			<ContactForm />
 			<div>
 				<div>Contacts</div>
@@ -17,7 +18,7 @@ const HomePage = () => {
 			</div>
 		</div>
 	) : (
-		<div>WELCOME PAGE</div>
+		<Welcome />
 	);
 };
 
