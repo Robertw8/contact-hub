@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Global } from "@emotion/react";
 import { globalStyles } from "./styles/globalStyles";
 import { PersistGate } from "redux-persist/integration/react";
+import { ConfigProvider } from "antd";
+import { theme } from "./styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
@@ -14,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 			<Global styles={globalStyles} />
 			<PersistGate loading={null} persistor={persistor}>
 				<BrowserRouter basename='/goit-react-hw-08-phonebook/'>
-					<App />
+					<ConfigProvider theme={theme}>
+						<App />
+					</ConfigProvider>
 				</BrowserRouter>
 			</PersistGate>
 		</Provider>
