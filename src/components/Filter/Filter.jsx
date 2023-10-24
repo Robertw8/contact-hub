@@ -1,5 +1,4 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
 import { FilterWrapper } from "./Filter.styled";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,7 @@ export const Filter = () => {
 
 	return (
 		<FilterWrapper>
-			<TextField
+			<input
 				id='outlined'
 				label='Search'
 				type='text'
