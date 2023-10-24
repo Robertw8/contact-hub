@@ -4,6 +4,7 @@ import { SharedLayout } from "../SharedLayout/SharedLayout";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/useAuth";
 import { currentUser } from "../../redux/auth/operations";
+// import { Background } from "../Background/Background";
 // import { RestrictedRoute } from "../RestrictedRoute";
 // import { PrivateRoute } from "../PrivateRoute";
 
@@ -21,13 +22,15 @@ export const App = () => {
 	}, [dispatch]);
 
 	return (
-		<Routes>
-			<Route path='/' element={<SharedLayout />}>
-				<Route index element={<HomePage />} />
-				<Route path='/register' element={<RegisterPage />} />
-				<Route path='/login' element={<LoginPage />} />
-				<Route path='*' element={<NotFoundPage />} />
-			</Route>
-		</Routes>
+		<>
+			<Routes>
+				<Route path='/' element={<SharedLayout />}>
+					<Route index element={<HomePage />} />
+					<Route path='/register' element={<RegisterPage />} />
+					<Route path='/login' element={<LoginPage />} />
+					<Route path='*' element={<NotFoundPage />} />
+				</Route>
+			</Routes>
+		</>
 	);
 };
