@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { SharedLayout } from "../SharedLayout/SharedLayout";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../hooks/useAuth";
-import { current } from "../../redux/auth/operations";
+import { currentUser } from "../../redux/auth/operations";
 // import { RestrictedRoute } from "../RestrictedRoute";
 // import { PrivateRoute } from "../PrivateRoute";
 
@@ -17,7 +17,7 @@ export const App = () => {
 	// const { isRefreshing } = useAuth();
 
 	useEffect(() => {
-		dispatch(current());
+		dispatch(currentUser());
 	}, [dispatch]);
 
 	return (
