@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/auth/operations";
 import { useSelector } from "react-redux";
 import { selectUser, selectIsLoggedIn } from "../../redux/auth/selectors";
+import { Menu, UserName } from "./UserMenu.styled";
 
 export const UserMenu = () => {
 	const dispatch = useDispatch();
@@ -14,13 +15,15 @@ export const UserMenu = () => {
 	};
 
 	return (
-		<div>
-			<p>Welcome, {user.name}!</p>
+		<>
 			{isLoggedIn && (
-				<button type='button' onClick={handleLogoutClick}>
-					Logout
-				</button>
+				<Menu>
+					<UserName>Welcome, {user.name}!</UserName>
+					<button type='button' onClick={handleLogoutClick}>
+						Logout
+					</button>
+				</Menu>
 			)}
-		</div>
+		</>
 	);
 };
