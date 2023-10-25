@@ -1,10 +1,21 @@
 import styled from "@emotion/styled";
+import { Button } from "antd";
 
 const Menu = styled.div`
-	display: flex;
-	margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 30%;
+  margin-left: auto;
 `;
 
-const UserName = styled.p``;
+const UserName = styled.p`
+  color: #fff;
+`;
 
-export { Menu, UserName };
+const LogoutButton = styled(Button)`
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+`;
+
+export { Menu, UserName, LogoutButton };
