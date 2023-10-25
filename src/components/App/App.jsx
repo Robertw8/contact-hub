@@ -24,8 +24,8 @@ export const App = () => {
 			<Routes>
 				<Route path='/' element={<SharedLayout />}>
 					<Route index element={<HomePage />} />
-					<Route path='/register' element={<RegisterPage />} />
-					<Route path='/login' element={<LoginPage />} />
+					<Route path='register' element={<RegisterPage />} />
+					<Route path='login' element={<LoginPage />} />
 					<Route path='*' element={<NotFoundPage />} />
 				</Route>
 			</Routes>

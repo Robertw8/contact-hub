@@ -11,10 +11,10 @@ export const Welcome = () => {
 			<Background />
 			<WelcomeText>Welcome to ContactHub!</WelcomeText>
 			<AuthLinks>
-				<StyledAuthButton type='primary' onClick={() => navigate("/register")}>
+				<StyledAuthButton type='primary' onClick={() => navigate("register")}>
 					Register
 				</StyledAuthButton>
-				<StyledAuthButton type='default' onClick={() => navigate("/login")}>
+				<StyledAuthButton type='default' onClick={() => navigate("login")}>
 					Login
 				</StyledAuthButton>
 			</AuthLinks>
