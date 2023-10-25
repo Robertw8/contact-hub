@@ -5,83 +5,87 @@ import { addContact } from "../../redux/contacts/operations";
 import { useToken } from "../../hooks/useToken";
 
 export const ContactForm = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	// const [contactData, setContactData] = useState({ name: "", phone: "" });
+  // const [contactData, setContactData] = useState({ name: "", phone: "" });
 
-	const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-	// const TOKEN = useToken();
+  // const TOKEN = useToken();
 
-	// const [contact] = addContact();
+  // const [contact] = addContact();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
 
-		try {
-			// await schema.validate({ name, phone }, { abortEarly: false });
-			// const isDuplicate = contacts.find(
-			// 	(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
-			// );
-			// if (isDuplicate) {
-			// 	Notiflix.Notify.info("This contact already exists");
-			// 	return;
-			// }
-			// setName("");
-			// setPhone("");
-			// setErrors({});
+    try {
+      // await schema.validate({ name, phone }, { abortEarly: false });
+      // const isDuplicate = contacts.find(
+      // 	(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
+      // );
+      // if (isDuplicate) {
+      // 	Notiflix.Notify.info("This contact already exists");
+      // 	return;
+      // }
+      // setName("");
+      // setPhone("");
+      // setErrors({});
 
-			const contactData = {
-				name: e.target.elements[0].value,
-				number: e.target.elements[1].value,
-			};
+      const contactData = {
+        name: e.target.elements[0].value,
+        number: e.target.elements[1].value,
+      };
 
-			dispatch(addContact(contactData));
-			e.target.reset();
-		} catch (error) {
-			// const validationErrors = {};
-			// error.inner.forEach((e) => {
-			// 	validationErrors[e.path] = e.message;
-			// });
-			// setErrors(validationErrors);
-			console.warn(error);
-		}
-	};
+      dispatch(addContact(contactData));
+      e.target.reset();
+    } catch (error) {
+      // const validationErrors = {};
+      // error.inner.forEach((e) => {
+      // 	validationErrors[e.path] = e.message;
+      // });
+      // setErrors(validationErrors);
+      console.warn(error);
+    }
+  };
 
-	return (
-		<>
-			<Form name='contact' onSubmit={handleSubmit}>
-				<input
-					id='outlined'
-					label='Name'
-					type='text'
-					name='name'
-					placeholder='Enter name...'
-					required
-					// value={contactData.name}
-					// onChange={({ target }) => setContactData({  name: target.value })}
-					// error={!!errors.name}
-					// helperText={errors.name}
-					autoComplete='new-password'
-				/>
-				<input
-					id='outlined'
-					label='Phone'
-					type='tel'
-					name='phone'
-					placeholder='Enter phone number...'
-					required
-					// value={contactData.phone}
-					// onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
-					// error={!!errors.phone}
-					// helperText={errors.phone}
-					autoComplete='new-password'
-				/>
+  return (
+    <>
+      <Form name="contact" onSubmit={handleSubmit}>
+        <input
+          id="outlined"
+          label="Name"
+          type="text"
+          name="name"
+          placeholder="Enter name..."
+          required
+          // value={contactData.name}
+          // onChange={({ target }) => setContactData({  name: target.value })}
+          // error={!!errors.name}
+          // helperText={errors.name}
+          autoComplete="new-password"
+        />
+        <input
+          id="outlined"
+          label="Phone"
+          type="tel"
+          name="phone"
+          placeholder="Enter phone number..."
+          required
+          // value={contactData.phone}
+          // onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
+          // error={!!errors.phone}
+          // helperText={errors.phone}
+          autoComplete="new-password"
+        />
 
-				<button color='info' type='submit' style={{ width: "40%", alignSelf: "flex-end" }}>
-					Add contact
-				</button>
-			</Form>
-		</>
-	);
+        <button
+          color="info"
+          type="submit"
+          style={{ width: "40%", alignSelf: "flex-end" }}
+        >
+          Add contact
+        </button>
+      </Form>
+    </>
+  );
 };
