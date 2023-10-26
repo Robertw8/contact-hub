@@ -1,6 +1,6 @@
 import React from "react";
 import { Item, DeleteButton, DeleteIcon } from "./ContactItem.styled";
-import { Card } from "antd";
+import { Card, Popconfirm } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/contacts/selectors";
 import { deleteContact } from "../../redux/contacts/operations";
@@ -12,16 +12,24 @@ export const ContactItem = ({ contact }) => {
   return (
     <Item
       actions={[
-        <DeleteButton
+        <Popconfirm
           key="delete"
-          type="dashed"
-          onClick={() => dispatch(deleteContact(contact.id))}
-          htmlType="button"
-          aria-label="delete contact"
-          loading={isLoading}
+          title="Delete contact"
+          description="Are you sure to delete this contact?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => dispatch(deleteContact(contact.id))}
         >
-          <DeleteIcon />
-        </DeleteButton>,
+          <DeleteButton
+            type="dashed"
+            htmlType="button"
+            aria-label="delete contact"
+            loading={isLoading}
+          >
+            <DeleteIcon />
+          </DeleteButton>
+          ,
+        </Popconfirm>,
       ]}
     >
       <Card.Meta title={contact.name} description={contact.number} />

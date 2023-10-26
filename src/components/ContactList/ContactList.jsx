@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getContacts } from "../../redux/contacts/operations";
 import {
   selectContacts,
-  // selectIsLoading,
+  selectIsLoading,
 } from "../../redux/contacts/selectors";
 import { selectFilter } from "../../redux/filter/filterSlice";
 import { ContactForm } from "../ContactForm/ContactForm";
 import { ContactItem } from "../ContactItem/ContactItem";
+import { Loader } from "../Loader/Loader";
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-  // const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const [addDrawerOpen, setAddDrawerOpen] = useState(false);
 
   useEffect(() => {
@@ -30,9 +31,15 @@ export const ContactList = () => {
   return (
     <>
       <List>
-        {filteredContacts.map(contact => (
-          <ContactItem key={contact.id} contact={contact} />
-        ))}
+        {isLoading ? (
+          <Loader />
+        ) : filteredContacts.length ? (
+          filteredContacts.map(contact => (
+            <ContactItem key={contact.id} contact={contact} />
+          ))
+        ) : (
+          <p>You have no contacts added yet. Add your first contact!</p>
+        )}
         <AddItem>
           <AddButton
             type="primary"
