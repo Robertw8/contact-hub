@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledFormItem,
   StyledInput,
@@ -8,36 +8,36 @@ import { StyledContactForm } from "./ContactForm.styled";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { useSelector } from "react-redux";
-import { selectIsLoading } from "../../redux/contacts/selectors";
+import {
+  selectContacts,
+  selectIsLoading,
+} from "../../redux/contacts/selectors";
+import { Toaster } from "react-hot-toast";
+import { successToast, errorToast } from "../../utils/toast";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
-
-  const [errors, setErrors] = useState({});
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = async ({ name, number }) => {
     try {
-      // await schema.validate({ name, phone }, { abortEarly: false });
-      // const isDuplicate = contacts.find(
-      // 	(contact) => contact.name.toLowerCase() === name.toLowerCase() || contact.phone === phone.toLowerCase(),
-      // );
-      // if (isDuplicate) {
-      // 	Notiflix.Notify.info("This contact already exists");
-      // 	return;
-      // }
-      // setName("");
-      // setPhone("");
-      // setErrors({});
+      const isDuplicate = contacts.find(
+        contact =>
+          contact.name.toLowerCase() === name.toLowerCase() ||
+          contact.number === number.toLowerCase()
+      );
+      if (isDuplicate) {
+        errorToast("This contact already exists");
+        return;
+      }
 
       await dispatch(addContact({ name, number }));
+      successToast("Contact added!");
     } catch (error) {
-      // const validationErrors = {};
-      // error.inner.forEach((e) => {
-      // 	validationErrors[e.path] = e.message;
-      // });
-      // setErrors(validationErrors);
-      console.warn(error);
+      errorToast(
+        "Field 'name' must only include letters and field 'phone' only numbers"
+      );
     }
   };
 
@@ -50,8 +50,6 @@ export const ContactForm = () => {
         >
           <StyledInput
             placeholder="Enter name..."
-            // error={!!errors.name}
-            // helperText={errors.name}
             autoComplete="new-password"
           />
         </StyledFormItem>
@@ -61,8 +59,6 @@ export const ContactForm = () => {
         >
           <StyledInput
             placeholder="Enter phone number..."
-            // error={!!errors.phone}
-            // helperText={errors.phone}
             autoComplete="new-password"
           />
         </StyledFormItem>
@@ -74,6 +70,7 @@ export const ContactForm = () => {
           Add contact
         </StyledSubmitButton>
       </StyledContactForm>
+      <Toaster />
     </>
   );
 };
