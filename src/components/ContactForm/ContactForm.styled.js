@@ -1,10 +1,12 @@
 import styled from "@emotion/styled";
+import { Form, Input } from "antd";
 
-const Form = styled.form`
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	max-width: 40%;
+const StyledContactForm = styled(Form)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  /* max-width: 40%; */
 `;
 
-export { Form };
+export { StyledContactForm };

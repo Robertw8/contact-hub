@@ -1,11 +1,20 @@
 import React, { useState } from "react";
-import { Form } from "./ContactForm.styled";
+// import { StyledContactForm } from "./ContactForm.styled";
+import {
+  StyledForm,
+  StyledFormItem,
+  StyledInput,
+  StyledSubmitButton,
+} from "../LoginForm/LoginForm.styled";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import { useToken } from "../../hooks/useToken";
+import { useSelector } from "react-redux";
+import { selectIsLoading } from "../../redux/contacts/selectors";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
 
   // const [contactData, setContactData] = useState({ name: "", phone: "" });
 
@@ -15,9 +24,7 @@ export const ContactForm = () => {
 
   // const [contact] = addContact();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-
+  const handleSubmit = async ({ name, number }) => {
     try {
       // await schema.validate({ name, phone }, { abortEarly: false });
       // const isDuplicate = contacts.find(
@@ -30,14 +37,9 @@ export const ContactForm = () => {
       // setName("");
       // setPhone("");
       // setErrors({});
+      console.log(isLoading);
 
-      const contactData = {
-        name: e.target.elements[0].value,
-        number: e.target.elements[1].value,
-      };
-
-      dispatch(addContact(contactData));
-      e.target.reset();
+      await dispatch(addContact({ name, number }));
     } catch (error) {
       // const validationErrors = {};
       // error.inner.forEach((e) => {
@@ -50,42 +52,34 @@ export const ContactForm = () => {
 
   return (
     <>
-      <Form name="contact" onSubmit={handleSubmit}>
-        <input
-          id="outlined"
-          label="Name"
-          type="text"
+      <StyledForm name="basic" onFinish={handleSubmit}>
+        <StyledFormItem
           name="name"
-          placeholder="Enter name..."
-          required
-          // value={contactData.name}
-          // onChange={({ target }) => setContactData({  name: target.value })}
-          // error={!!errors.name}
-          // helperText={errors.name}
-          autoComplete="new-password"
-        />
-        <input
-          id="outlined"
-          label="Phone"
-          type="tel"
-          name="phone"
-          placeholder="Enter phone number..."
-          required
-          // value={contactData.phone}
-          // onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
-          // error={!!errors.phone}
-          // helperText={errors.phone}
-          autoComplete="new-password"
-        />
-
-        <button
-          color="info"
-          type="submit"
-          style={{ width: "40%", alignSelf: "flex-end" }}
+          rules={[{ required: true, message: "Please enter email!" }]}
         >
+          <StyledInput
+            placeholder="Enter name..."
+            // value={contactData.name}
+            // onChange={({ target }) => setContactData({  name: target.value })}
+            // error={!!errors.name}
+            // helperText={errors.name}
+            autoComplete="new-password"
+          />
+        </StyledFormItem>
+        <StyledFormItem name="number">
+          <StyledInput
+            placeholder="Enter phone number..."
+            // value={contactData.phone}
+            // onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
+            // error={!!errors.phone}
+            // helperText={errors.phone}
+            autoComplete="new-password"
+          />
+        </StyledFormItem>
+        <StyledSubmitButton type="dashed" htmlType="submit" loading={isLoading}>
           Add contact
-        </button>
-      </Form>
+        </StyledSubmitButton>
+      </StyledForm>
     </>
   );
 };
