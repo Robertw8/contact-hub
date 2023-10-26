@@ -1,4 +1,4 @@
-import{n,B as c,u as i,j as e,a as r,r as a}from"./index-01b89b95.js";import{B as l}from"./Background-56f5b187.js";const x=n.div`
+import{n,B as c,u as i,j as e,a as r,r as a}from"./index-926efa32.js";import{B as l}from"./Background-17370465.js";const x=n.div`
 	display: flex;
 	flex-direction: column;
 	height: 100%;
