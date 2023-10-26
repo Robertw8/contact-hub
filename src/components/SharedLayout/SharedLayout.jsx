@@ -7,14 +7,14 @@ import { UserMenu } from "../UserMenu/UserMenu";
 import { Loader } from "../Loader/Loader";
 
 export const SharedLayout = () => {
-	const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
-	return (
-		<Container>
-			{isLoggedIn && <UserMenu />}
-			<Suspense fallback={<Loader />}>
-				<Outlet />
-			</Suspense>
-		</Container>
-	);
+  return (
+    <Container>
+      {isLoggedIn && <UserMenu />}
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </Container>
+  );
 };
