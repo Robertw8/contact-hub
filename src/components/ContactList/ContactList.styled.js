@@ -8,7 +8,8 @@ const List = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  padding: 100px 20px;
+  padding: 40px 20px 100px 20px;
+  min-height: 300px;
 
   border-radius: 10px;
   background-color: #f9f9f9;
