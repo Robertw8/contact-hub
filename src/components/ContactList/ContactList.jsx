@@ -38,7 +38,7 @@ export const ContactList = () => {
             <ContactItem key={contact.id} contact={contact} />
           ))
         ) : (
-          <p>You have no contacts added yet. Add your first contact!</p>
+          <p>No contacts found.</p>
         )}
         <AddItem>
           <AddButton
