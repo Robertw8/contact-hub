@@ -1,7 +1,11 @@
 import styled from "@emotion/styled";
+import { Input } from "antd";
 
 const FilterWrapper = styled.div`
-	width: 25%;
+  max-width: 300px;
+  margin: 20px auto;
 `;
 
-export { FilterWrapper };
+const StyledFilterInput = styled(Input)``;
+
+export { FilterWrapper, StyledFilterInput };
