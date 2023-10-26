@@ -10,46 +10,51 @@ import {
 } from "../LoginForm/LoginForm.styled";
 import { useDispatch } from "react-redux";
 import { signup } from "../../redux/auth/operations";
-import { useAuth } from "../../hooks/useAuth";
+import { errorToast } from "../../utils/toast";
+import { Toaster } from "react-hot-toast";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useAuth();
 
   const handleRegisterSubmit = async ({ name, email, password }) => {
     try {
       await dispatch(signup({ name, email, password }));
     } catch (error) {
-      console.warn("Registration failed: ", error.message);
+      errorToast(
+        "Something went wrong, try to fill in all fields carefully or try another email and username"
+      );
     }
   };
 
   return (
-    <StyledForm name="basic" onFinish={handleRegisterSubmit}>
-      <StyledFormItem
-        name="name"
-        rules={[{ required: true, message: "Please enter username!" }]}
-      >
-        <StyledInput placeholder="Enter username" />
-      </StyledFormItem>
-      <StyledFormItem
-        name="email"
-        rules={[{ required: true, message: "Please enter email!" }]}
-      >
-        <StyledInput placeholder="Enter email" />
-      </StyledFormItem>
-      <StyledFormItem
-        name="password"
-        rules={[{ required: true, message: "Please enter password!" }]}
-      >
-        <StyledPasswordInput placeholder="Enter password" />
-      </StyledFormItem>
-      <StyledSubmitButton type="primary" htmlType="submit" loading={isLoading}>
-        Register
-      </StyledSubmitButton>
-      <FormText>
-        Already have an account? <FormLink to="/login">Sign in</FormLink>{" "}
-      </FormText>
-    </StyledForm>
+    <>
+      <StyledForm name="basic" onFinish={handleRegisterSubmit}>
+        <StyledFormItem
+          name="name"
+          rules={[{ required: true, message: "Please enter username!" }]}
+        >
+          <StyledInput placeholder="John Doe" />
+        </StyledFormItem>
+        <StyledFormItem
+          name="email"
+          rules={[{ required: true, message: "Please enter email!" }]}
+        >
+          <StyledInput placeholder="johndoe@mail.com" />
+        </StyledFormItem>
+        <StyledFormItem
+          name="password"
+          rules={[{ required: true, message: "Please enter password!" }]}
+        >
+          <StyledPasswordInput placeholder="password123" />
+        </StyledFormItem>
+        <StyledSubmitButton type="primary" htmlType="submit">
+          Register
+        </StyledSubmitButton>
+        <FormText>
+          Already have an account? <FormLink to="/login">Sign in</FormLink>
+        </FormText>
+      </StyledForm>
+      <Toaster />
+    </>
   );
 };
