@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { Card, Button } from "antd";
-import { DeleteTwoTone } from "@ant-design/icons";
+import { Card } from "antd";
 
 const Item = styled(Card)`
   width: 300px;
@@ -11,8 +10,4 @@ const Item = styled(Card)`
   }
 `;
 
-const DeleteButton = styled(Button)``;
-
-const DeleteIcon = styled(DeleteTwoTone)``;
-
-export { Item, DeleteButton, DeleteIcon };
+export { Item };

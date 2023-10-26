@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { List, AddButton, AddItem, StyledDrawer } from "./ContactList.styled";
-import { useDispatch, useSelector } from "react-redux";
-import { getContacts } from "../../redux/contacts/operations";
-import {
-  selectContacts,
-  selectIsLoading,
-} from "../../redux/contacts/selectors";
-import { selectFilter } from "../../redux/filter/filterSlice";
-import { ContactForm } from "../ContactForm/ContactForm";
+import React, { useEffect } from "react";
+import { List, AddButton, AddItem } from "./ContactList.styled";
 import { ContactItem } from "../ContactItem/ContactItem";
 import { Loader } from "../Loader/Loader";
 
-export const ContactList = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { getContacts } from "../../redux/contacts/operations";
+import { selectFilter } from "../../redux/filter/filterSlice";
+import { useContacts } from "../../hooks/useContacts";
+
+export const ContactList = ({ onAddClick }) => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const { contacts, isLoading } = useContacts();
   const filter = useSelector(selectFilter);
-  const isLoading = useSelector(selectIsLoading);
-  const [addDrawerOpen, setAddDrawerOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getContacts());
@@ -41,23 +36,11 @@ export const ContactList = () => {
           <p>No contacts found.</p>
         )}
         <AddItem>
-          <AddButton
-            type="primary"
-            onClick={() => setAddDrawerOpen(true)}
-            htmlType="button"
-          >
+          <AddButton type="primary" onClick={onAddClick} htmlType="button">
             Add +
           </AddButton>
         </AddItem>
       </List>
-      <StyledDrawer
-        title="Add new contacts"
-        width={300}
-        onClose={() => setAddDrawerOpen(false)}
-        open={addDrawerOpen}
-      >
-        <ContactForm />
-      </StyledDrawer>
     </>
   );
 };

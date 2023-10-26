@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Drawer } from "antd";
+import { Button } from "antd";
 
 const List = styled.div`
   position: relative;
@@ -36,6 +36,4 @@ const AddButton = styled(Button)`
   background-color: #1677ff;
 `;
 
-const StyledDrawer = styled(Drawer)``;
-
-export { List, AddButton, AddItem, StyledDrawer };
+export { List, AddButton, AddItem };

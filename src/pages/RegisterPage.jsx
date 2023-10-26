@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Background } from "../components/Background/Background";
 import { RegisterForm } from "../components/RegisterForm/RegisterForm";
+
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 const RegisterPage = () => {

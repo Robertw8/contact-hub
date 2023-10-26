@@ -1,9 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/auth/operations";
 import { Menu, UserName, LogoutButton } from "./UserMenu.styled";
+
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/operations";
 
 export const UserMenu = () => {
   const dispatch = useDispatch();

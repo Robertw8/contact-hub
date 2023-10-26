@@ -5,20 +5,16 @@ import {
   StyledSubmitButton,
 } from "../LoginForm/LoginForm.styled";
 import { StyledContactForm } from "./ContactForm.styled";
+import { Toaster } from "react-hot-toast";
+
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
-import { useSelector } from "react-redux";
-import {
-  selectContacts,
-  selectIsLoading,
-} from "../../redux/contacts/selectors";
-import { Toaster } from "react-hot-toast";
 import { successToast, errorToast } from "../../utils/toast";
+import { useContacts } from "../../hooks/useContacts";
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const contacts = useSelector(selectContacts);
+  const { contacts, isLoading } = useContacts();
 
   const handleSubmit = async ({ name, number }) => {
     try {

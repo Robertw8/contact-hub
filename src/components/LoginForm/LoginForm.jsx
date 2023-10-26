@@ -8,10 +8,11 @@ import {
   FormLink,
   FormText,
 } from "./LoginForm.styled";
+import { Toaster } from "react-hot-toast";
+
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/operations";
 import { errorToast } from "../../utils/toast";
-import { Toaster } from "react-hot-toast";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();

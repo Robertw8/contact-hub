@@ -1,13 +1,12 @@
 import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { Container } from "../../styles/globalStyles";
-import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import { UserMenu } from "../UserMenu/UserMenu";
 import { Loader } from "../Loader/Loader";
+import { useAuth } from "../../hooks/useAuth";
 
 export const SharedLayout = () => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Form, Input } from "antd";
+import { Form } from "antd";
 
 const StyledContactForm = styled(Form)`
   display: flex;

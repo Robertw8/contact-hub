@@ -1,12 +1,14 @@
 import React from "react";
-import { Item, DeleteButton, DeleteIcon } from "./ContactItem.styled";
-import { Card, Popconfirm } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { selectIsLoading } from "../../redux/contacts/selectors";
+import { Item } from "./ContactItem.styled";
+import { Button, Card, Popconfirm } from "antd";
+import { DeleteTwoTone } from "@ant-design/icons";
+
+import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/operations";
+import { useContacts } from "../../hooks/useContacts";
 
 export const ContactItem = ({ contact }) => {
-  const isLoading = useSelector(selectIsLoading);
+  const { isLoading } = useContacts();
   const dispatch = useDispatch();
 
   return (
@@ -20,14 +22,14 @@ export const ContactItem = ({ contact }) => {
           cancelText="No"
           onConfirm={() => dispatch(deleteContact(contact.id))}
         >
-          <DeleteButton
+          <Button
             type="dashed"
             htmlType="button"
             aria-label="delete contact"
             loading={isLoading}
           >
-            <DeleteIcon />
-          </DeleteButton>
+            <DeleteTwoTone />
+          </Button>
         </Popconfirm>,
       ]}
     >
