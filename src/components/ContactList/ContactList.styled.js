@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { HashLoader } from "react-spinners";
 import { Button, Drawer } from "antd";
 
 const List = styled.div`
@@ -37,12 +36,6 @@ const AddButton = styled(Button)`
   background-color: #1677ff;
 `;
 
-const StyledLoader = styled(HashLoader)`
-  position: absolute;
-  left: 50%;
-  transform: translateY(200%) !important;
-`;
-
 const StyledDrawer = styled(Drawer)``;
 
-export { List, StyledLoader, AddButton, AddItem, StyledDrawer };
+export { List, AddButton, AddItem, StyledDrawer };
