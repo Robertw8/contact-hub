@@ -28,7 +28,6 @@ export const ContactItem = ({ contact }) => {
           >
             <DeleteIcon />
           </DeleteButton>
-          ,
         </Popconfirm>,
       ]}
     >
