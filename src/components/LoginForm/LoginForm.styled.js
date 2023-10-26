@@ -6,6 +6,11 @@ const StyledForm = styled(Form)`
   padding: 20% 0;
   max-width: 40%;
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 50%;
+    max-width: 100%;
+  }
 `;
 
 const StyledFormItem = styled(Form.Item)`
@@ -43,6 +48,10 @@ const StyledSubmitButton = styled(Button)`
 const FormText = styled.div`
   color: #fff;
   margin-top: -20px;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
+  }
 `;
 
 const FormLink = styled(Link)`

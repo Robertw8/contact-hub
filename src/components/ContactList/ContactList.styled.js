@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { HashLoader } from "react-spinners";
-import { DeleteTwoTone } from "@ant-design/icons";
-import { Button, Card } from "antd";
+import { Button, Drawer } from "antd";
 
 const List = styled.div`
   position: relative;
@@ -9,15 +8,11 @@ const List = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
-  padding: 100px;
+  padding: 100px 20px;
 
   border-radius: 10px;
   background-color: #f9f9f9;
   border: 1px solid #f9f9f9;
-`;
-
-const Item = styled(Card)`
-  width: 300px;
 `;
 
 const AddItem = styled.li`
@@ -27,16 +22,6 @@ const AddItem = styled.li`
   margin-top: 20px;
   display: flex;
   justify-content: center;
-`;
-
-const DeleteButton = styled(Button)``;
-
-const DeleteIcon = styled(DeleteTwoTone)``;
-
-const StyledLoader = styled(HashLoader)`
-  position: absolute;
-  left: 50%;
-  transform: translateY(200%) !important;
 `;
 
 const AddButton = styled(Button)`
@@ -51,12 +36,12 @@ const AddButton = styled(Button)`
   background-color: #1677ff;
 `;
 
-export {
-  List,
-  Item,
-  StyledLoader,
-  DeleteButton,
-  DeleteIcon,
-  AddButton,
-  AddItem,
-};
+const StyledLoader = styled(HashLoader)`
+  position: absolute;
+  left: 50%;
+  transform: translateY(200%) !important;
+`;
+
+const StyledDrawer = styled(Drawer)``;
+
+export { List, StyledLoader, AddButton, AddItem, StyledDrawer };

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-// import { StyledContactForm } from "./ContactForm.styled";
 import {
-  StyledForm,
   StyledFormItem,
   StyledInput,
   StyledSubmitButton,
 } from "../LoginForm/LoginForm.styled";
+import { StyledContactForm } from "./ContactForm.styled";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
-import { useToken } from "../../hooks/useToken";
 import { useSelector } from "react-redux";
 import { selectIsLoading } from "../../redux/contacts/selectors";
 
@@ -16,13 +14,7 @@ export const ContactForm = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
 
-  // const [contactData, setContactData] = useState({ name: "", phone: "" });
-
   const [errors, setErrors] = useState({});
-
-  // const TOKEN = useToken();
-
-  // const [contact] = addContact();
 
   const handleSubmit = async ({ name, number }) => {
     try {
@@ -37,7 +29,6 @@ export const ContactForm = () => {
       // setName("");
       // setPhone("");
       // setErrors({});
-      console.log(isLoading);
 
       await dispatch(addContact({ name, number }));
     } catch (error) {
@@ -52,34 +43,37 @@ export const ContactForm = () => {
 
   return (
     <>
-      <StyledForm name="basic" onFinish={handleSubmit}>
+      <StyledContactForm name="basic" onFinish={handleSubmit}>
         <StyledFormItem
           name="name"
-          rules={[{ required: true, message: "Please enter email!" }]}
+          rules={[{ required: true, message: "Please enter name!" }]}
         >
           <StyledInput
             placeholder="Enter name..."
-            // value={contactData.name}
-            // onChange={({ target }) => setContactData({  name: target.value })}
             // error={!!errors.name}
             // helperText={errors.name}
             autoComplete="new-password"
           />
         </StyledFormItem>
-        <StyledFormItem name="number">
+        <StyledFormItem
+          name="number"
+          rules={[{ required: true, message: "Please enter phone number!" }]}
+        >
           <StyledInput
             placeholder="Enter phone number..."
-            // value={contactData.phone}
-            // onChange={({ target }) => setContactData({ ...contactData, phone: target.value })}
             // error={!!errors.phone}
             // helperText={errors.phone}
             autoComplete="new-password"
           />
         </StyledFormItem>
-        <StyledSubmitButton type="dashed" htmlType="submit" loading={isLoading}>
+        <StyledSubmitButton
+          type="primary"
+          htmlType="submit"
+          loading={isLoading}
+        >
           Add contact
         </StyledSubmitButton>
-      </StyledForm>
+      </StyledContactForm>
     </>
   );
 };

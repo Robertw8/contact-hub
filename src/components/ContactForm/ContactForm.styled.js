@@ -6,7 +6,6 @@ const StyledContactForm = styled(Form)`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  /* max-width: 40%; */
 `;
 
 export { StyledContactForm };
