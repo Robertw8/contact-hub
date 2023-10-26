@@ -1,23 +1,25 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../hooks/useToken";
 import { LoginForm } from "../components/LoginForm/LoginForm";
 import { Background } from "../components/Background/Background";
+import { useAuth } from "../hooks/useAuth";
 
 const LoginPage = () => {
-	const navigate = useNavigate();
-	const TOKEN = useToken();
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
 
-	useEffect(() => {
-		if (TOKEN) navigate("/");
-	}, [TOKEN, navigate]);
+  useEffect(() => {
+    isLoggedIn && navigate("/contacts");
+  }, [isLoggedIn, navigate]);
 
-	return (
-		<>
-			<Background />
-			<LoginForm />
-		</>
-	);
+  return (
+    !isLoggedIn && (
+      <>
+        <Background />
+        <LoginForm />
+      </>
+    )
+  );
 };
 
 export default LoginPage;
