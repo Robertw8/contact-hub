@@ -12,7 +12,7 @@ import { theme } from "./styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename="/goit-react-hw-08-phonebook/">
+    <BrowserRouter basename="/contact-hub/">
       <Provider store={store}>
         <Global styles={globalStyles} />
         <PersistGate loading={null} persistor={persistor}>
