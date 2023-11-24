@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Item } from "./ContactItem.styled";
 import { Button, Card, Popconfirm } from "antd";
-import { DeleteTwoTone } from "@ant-design/icons";
+import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import { UpdateForm } from "../UpdateForm/UpdateForm";
 
 import { useDispatch } from "react-redux";
@@ -35,13 +35,13 @@ export const ContactItem = ({ contact }) => {
         </Popconfirm>,
         <Button
           key="update"
-          type="primary"
+          type="dashed"
           htmlType="button"
           aria-label="update contact"
           loading={isLoading}
           onClick={() => setIsFormOpen(true)}
         >
-          <DeleteTwoTone />
+          <EditTwoTone />
         </Button>,
       ]}
     >
