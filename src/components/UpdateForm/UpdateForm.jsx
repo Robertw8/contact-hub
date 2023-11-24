@@ -2,13 +2,13 @@ import React from "react";
 import {
   UpdateFormWrapper,
   StyledUpdateForm,
-  StyledFormItem,
-  StyledInput,
   StyledSubmitButton,
   CloseButton,
 } from "./UpdateForm.styled";
 import { CloseOutlined } from "@ant-design/icons";
 import { Toaster } from "react-hot-toast";
+import FormItem from "antd/es/form/FormItem";
+import { Input } from "antd";
 
 import { useDispatch } from "react-redux";
 import { updateContact } from "../../redux/contacts/operations";
@@ -51,18 +51,15 @@ export const UpdateForm = ({ contactId, isOpen, onClose }) => {
           <CloseOutlined />
         </CloseButton>
         <StyledUpdateForm onFinish={handleSubmit}>
-          <StyledFormItem name="newName">
-            <StyledInput
-              placeholder="Enter new name..."
-              autoComplete="password"
-            />
-          </StyledFormItem>
-          <StyledFormItem name="newNumber">
-            <StyledInput
+          <FormItem name="newName">
+            <Input placeholder="Enter new name..." autoComplete="password" />
+          </FormItem>
+          <FormItem name="newNumber">
+            <Input
               placeholder="Enter new phone number..."
               autoComplete="password"
             />
-          </StyledFormItem>
+          </FormItem>
           <StyledSubmitButton htmlType="submit" loading={isLoading}>
             Update
           </StyledSubmitButton>
