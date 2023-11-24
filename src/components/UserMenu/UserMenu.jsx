@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, UserName, LogoutButton } from "./UserMenu.styled";
+import { Menu, UserName, UserButton } from "./UserMenu.styled";
 
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
@@ -20,14 +20,22 @@ export const UserMenu = () => {
     <>
       {isLoggedIn && (
         <Menu>
-          <UserName>Welcome, {user.name}!</UserName>
-          <LogoutButton
+          <UserButton onClick={() => navigate("/contacts")}>
+            Contacts
+          </UserButton>
+          <UserName>
+            Welcome,{" "}
+            <UserButton onClick={() => navigate("/user")}>
+              {user.name}!
+            </UserButton>
+          </UserName>
+          <UserButton
             type="default"
             onClick={handleLogoutClick}
             loading={isLoading}
           >
             Logout
-          </LogoutButton>
+          </UserButton>
         </Menu>
       )}
     </>

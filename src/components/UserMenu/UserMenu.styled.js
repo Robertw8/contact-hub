@@ -5,7 +5,9 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 30%;
+  gap: 20px;
+
+  width: 50%;
   padding: 20px;
   margin-left: auto;
   border-bottom: 1px solid #ffffff55;
@@ -18,13 +20,16 @@ const Menu = styled.div`
 
 const UserName = styled.p`
   color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
   @media screen and (max-width: 768px) {
     font-size: 14px;
   }
 `;
 
-const LogoutButton = styled(Button)`
+const UserButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,4 +38,4 @@ const LogoutButton = styled(Button)`
   font-size: 16px;
 `;
 
-export { Menu, UserName, LogoutButton };
+export { Menu, UserName, UserButton };
