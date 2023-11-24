@@ -21,7 +21,7 @@ export const ContactForm = () => {
       const isDuplicate = contacts.find(
         contact =>
           contact.name.toLowerCase() === name.toLowerCase() ||
-          contact.number === number.toLowerCase()
+          contact.number === number
       );
       if (isDuplicate) {
         errorToast("This contact already exists");

@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import { Card } from "antd";
 
 const Item = styled(Card)`
+  position: relative;
+
   width: 300px;
   overflow: hidden;
 
@@ -9,5 +11,4 @@ const Item = styled(Card)`
     width: 100%;
   }
 `;
-
 export { Item };
