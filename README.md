@@ -1,5 +1,5 @@
-<h1>ContactHub</h1>
-<h2>A contact storage application where you can add, modify and delete contacts</h2>
+<h1 align="center">ContactHub</h1>
+<p>A contact storage application where you can add, modify and delete contacts</h2>
 
 <h2>Functionalities</h2>
 <ul>
