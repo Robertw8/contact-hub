@@ -8,6 +8,7 @@ import {
   getCurrentUser,
   type AuthInitialState,
 } from '.';
+import { errorToast } from '../../utils';
 
 const initialState: AuthInitialState = {
   user: { name: '', email: '' },
@@ -36,6 +37,7 @@ const slice = createSlice({
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message as string;
+        errorToast('This email or username already exists');
       })
       .addCase(loginUser.pending, state => {
         state.isLoading = true;
@@ -49,6 +51,7 @@ const slice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message as string;
+        errorToast('Email or password is incorrect');
       })
       .addCase(logoutUser.pending, state => {
         state.isLoading = true;
