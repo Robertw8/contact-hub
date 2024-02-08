@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { Button, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import styled from '@emotion/styled';
+import { Button, Form, Input } from 'antd';
+import { Link } from 'react-router-dom';
 
 const StyledForm = styled(Form)`
   padding: 20% 0;
@@ -15,7 +15,7 @@ const StyledForm = styled(Form)`
 
 const StyledFormItem = styled(Form.Item)`
   label {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #fff !important;
 
     &::before {
@@ -25,13 +25,15 @@ const StyledFormItem = styled(Form.Item)`
 `;
 
 const StyledInput = styled(Input)`
-  font-family: "Roboto", sans-serif;
+  height: 50px;
+  font-family: 'Roboto', sans-serif;
   color: #22223b;
   font-size: 18px;
 `;
 
 const StyledPasswordInput = styled(Input.Password)`
-  font-family: "Roboto", sans-serif;
+  height: 50px;
+  font-family: 'Roboto', sans-serif;
   color: #22223b;
   font-size: 18px;
 `;
@@ -40,7 +42,7 @@ const StyledSubmitButton = styled(Button)`
   display: block;
   margin-left: auto;
   width: 150px;
-  height: 40px;
+  height: 50px;
 
   font-size: 18px;
 `;
