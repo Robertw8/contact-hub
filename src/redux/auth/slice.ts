@@ -77,6 +77,8 @@ const slice = createSlice({
       .addCase(getCurrentUser.rejected, (state, action) => {
         state.isRefreshing = false;
         state.error = action.error.message as string;
+        state.isLoggedIn = false;
+        state.token = '';
       });
   },
 });

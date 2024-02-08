@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { operationWrapper } from '../../utils';
-import { setToken, clearToken } from '../../utils';
+import { operationWrapper, setToken, clearToken } from '../../utils';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
