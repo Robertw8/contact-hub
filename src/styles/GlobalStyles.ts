@@ -57,7 +57,7 @@ const GlobalStyles = css`
   }
 `;
 
-const Container = styled.div<{ margin: number }>`
+const Container = styled.div<{ margin?: number }>`
   max-width: 1180px;
   margin: ${({ margin }) => margin} auto;
   padding: 16px;
