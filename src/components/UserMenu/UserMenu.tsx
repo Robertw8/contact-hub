@@ -25,7 +25,11 @@ const UserMenu: React.FC = () => {
           </UserButton>
           <UserName>
             Welcome,{' '}
-            <UserButton onClick={() => navigate('/user')}>
+            <UserButton
+              type="text"
+              color="#fff"
+              onClick={() => navigate('/user')}
+            >
               {user.name}!
             </UserButton>
           </UserName>

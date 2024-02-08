@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { Button } from "antd";
+import styled from '@emotion/styled';
+import { Button } from 'antd';
 
 const Menu = styled.div`
   display: flex;
@@ -29,13 +29,19 @@ const UserName = styled.p`
   }
 `;
 
-const UserButton = styled(Button)`
+const UserButton = styled(Button)<{ color?: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  color: ${({ color }) => color};
+
+  &:hover,
+  &:focus {
+    color: ${({ color }) => color} !important;
+  }
 `;
 
 export { Menu, UserName, UserButton };
