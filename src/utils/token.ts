@@ -8,8 +8,4 @@ const clearToken = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-const getToken = () => {
-  localStorage.getItem('auth');
-};
-
-export { setToken, clearToken, getToken };
+export { setToken, clearToken };
