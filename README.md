@@ -10,6 +10,8 @@
 
 <h2>Built with</h2>
 <div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
+  <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
   <img width="12" />
   <img src="https://cdn.simpleicons.org/redux/764ABC" height="40" alt="redux logo"  />
@@ -24,8 +26,9 @@
 </div>
 
 <h2>Preview</h2>
-<img src="https://github.com/Robertw8/contact-hub/assets/126002887/5cd2931b-83d9-4949-b80f-85924d492524" alt="welcome page" />
-<img width="12" />
-<img src="https://github.com/Robertw8/contact-hub/assets/126002887/c579ec42-453d-4a75-b72e-f63f8e27c1ca" alt="contacts page" />
-<img width="12" />
-<img src="https://github.com/Robertw8/contact-hub/assets/126002887/9743a911-8083-42b7-b8b6-e4ab1c7606e9" alt="adding contact drawer" />
+  <img src="https://github.com/Robertw8/contact-hub/assets/126002887/5cd2931b-83d9-4949-b80f-85924d492524" alt="welcome page" />
+  <img width="12" />
+  <img src="https://github.com/Robertw8/contact-hub/assets/126002887/c579ec42-453d-4a75-b72e-f63f8e27c1ca" alt="contacts page" />
+  <img width="12" />
+  <img src="https://github.com/Robertw8/contact-hub/assets/126002887/9743a911-8083-42b7-b8b6-e4ab1c7606e9" alt="adding contact drawer" />
+
