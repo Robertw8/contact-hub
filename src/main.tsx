@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Global } from '@emotion/react';
 import { ConfigProvider } from 'antd';
 import { PersistGate } from 'redux-persist/integration/react';
+import { Toaster } from 'react-hot-toast';
 
 import { GlobalStyles, theme } from './styles';
 import { persistor, store } from './redux';
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Global styles={GlobalStyles} />
         <PersistGate loading={null} persistor={persistor}>
           <ConfigProvider theme={theme}>
+            <Toaster />
             <App />
           </ConfigProvider>
         </PersistGate>

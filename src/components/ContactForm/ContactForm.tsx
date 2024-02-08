@@ -7,7 +7,6 @@ import {
   StyledSubmitButton,
 } from '../LoginForm/LoginForm.styled';
 import { StyledContactForm } from './ContactForm.styled';
-import { Toaster } from 'react-hot-toast';
 
 import { addContact } from '../../redux/contacts';
 import { successToast, errorToast } from '../../utils';
@@ -20,25 +19,19 @@ const ContactForm: React.FC = () => {
   const handleSubmit = values => {
     const { name, number } = values;
 
-    try {
-      const isDuplicate = contacts.find(
-        contact =>
-          contact.name.toLowerCase() === values.name.toLowerCase() ||
-          contact.number === values.number
-      );
+    const isDuplicate = contacts.find(
+      contact =>
+        contact.name.toLowerCase() === values.name.toLowerCase() ||
+        contact.number === values.number
+    );
 
-      if (isDuplicate) {
-        errorToast('This contact already exists');
-        return;
-      }
-
-      dispatch(addContact({ name, number }));
-      successToast('Contact added!');
-    } catch (error) {
-      errorToast(
-        "Field 'name' must only include letters and field 'phone' only numbers"
-      );
+    if (isDuplicate) {
+      errorToast('This contact already exists');
+      return;
     }
+
+    dispatch(addContact({ name, number }));
+    successToast('Contact added!');
   };
 
   return (
@@ -70,7 +63,6 @@ const ContactForm: React.FC = () => {
           Add contact
         </StyledSubmitButton>
       </StyledContactForm>
-      <Toaster />
     </>
   );
 };

@@ -9,7 +9,6 @@ import {
   FormLink,
   FormText,
 } from '../LoginForm/LoginForm.styled';
-import { Toaster } from 'react-hot-toast';
 
 import { registerUser } from '../../redux/auth/operations';
 import type { AppDispatch } from '../../redux';
@@ -51,7 +50,6 @@ const RegisterForm = () => {
           Already have an account? <FormLink to="/login">Sign in</FormLink>
         </FormText>
       </StyledForm>
-      <Toaster />
     </>
   );
 };

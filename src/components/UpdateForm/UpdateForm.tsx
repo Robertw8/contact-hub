@@ -8,7 +8,6 @@ import {
   CloseButton,
 } from './UpdateForm.styled';
 import { CloseOutlined } from '@ant-design/icons';
-import { Toaster } from 'react-hot-toast';
 import FormItem from 'antd/es/form/FormItem';
 import { Input } from 'antd';
 
@@ -69,7 +68,6 @@ const UpdateForm: React.FC<UpdateFormProps> = ({
           </StyledSubmitButton>
         </StyledUpdateForm>
       </UpdateFormWrapper>
-      <Toaster />
     </>
   );
 };
