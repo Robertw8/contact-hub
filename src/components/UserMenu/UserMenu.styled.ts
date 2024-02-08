@@ -5,16 +5,19 @@ const Menu = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
   gap: 20px;
 
-  width: 50%;
+  width: 100%;
+  max-width: 375px;
   padding: 20px;
   margin-left: auto;
   border-bottom: 1px solid #ffffff55;
   border-radius: 10px;
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
+  @media screen and (min-width: 768px) {
+    max-width: 100%;
+    flex-direction: row;
   }
 `;
 
@@ -23,10 +26,6 @@ const UserName = styled.p`
   display: flex;
   align-items: center;
   gap: 10px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 14px;
-  }
 `;
 
 const UserButton = styled(Button)<{ color?: string }>`
