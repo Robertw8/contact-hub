@@ -8,7 +8,7 @@ interface PublicRouteProps {
 
 const PublicRoute: React.FC<PublicRouteProps> = ({
   component: Component,
-  redirectTo = '/',
+  redirectTo = '/contacts',
 }) => {
   const { isLoggedIn, isRefreshing } = useAuth();
 

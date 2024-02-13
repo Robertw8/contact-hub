@@ -17,7 +17,7 @@ const UserPage = lazy(() => import('../pages/UserPage'));
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoggedIn, isRefreshing } = useAuth();
+  const { isLoggedIn } = useAuth();
 
   useEffect(() => {
     dispatch(getCurrentUser({}));
@@ -29,11 +29,7 @@ const App: React.FC = () => {
         <Route
           index
           element={
-            <Navigate
-              to={
-                isLoggedIn && !isRefreshing ? routes.CONTACTS : routes.WELCOME
-              }
-            />
+            <Navigate to={!isLoggedIn ? routes.WELCOME : routes.CONTACTS} />
           }
         />
         <Route

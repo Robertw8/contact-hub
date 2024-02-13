@@ -7,11 +7,11 @@ interface Routes {
 }
 
 const routes: Routes = {
-  WELCOME: 'welcome',
-  REGISTER: 'register',
-  LOGIN: 'login',
-  CONTACTS: 'contacts',
-  USER: 'user',
+  WELCOME: '/welcome',
+  REGISTER: '/register',
+  LOGIN: '/login',
+  CONTACTS: '/contacts',
+  USER: '/user',
 };
 
 export default routes;
