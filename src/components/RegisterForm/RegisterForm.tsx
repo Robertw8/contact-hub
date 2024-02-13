@@ -11,6 +11,7 @@ import {
 } from '../LoginForm/LoginForm.styled';
 
 import { registerUser } from '../../redux/auth/operations';
+import routes from '../../routes';
 import type { AppDispatch } from '../../redux';
 
 const RegisterForm = () => {
@@ -47,7 +48,8 @@ const RegisterForm = () => {
           Register
         </StyledSubmitButton>
         <FormText>
-          Already have an account? <FormLink to="/login">Sign in</FormLink>
+          Already have an account?{' '}
+          <FormLink to={routes.LOGIN}>Sign in</FormLink>
         </FormText>
       </StyledForm>
     </>

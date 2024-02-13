@@ -30,28 +30,30 @@ const App: React.FC = () => {
           index
           element={
             <Navigate
-              to={!isLoggedIn && !isRefreshing ? '/welcome' : routes.CONTACTS}
+              to={
+                isLoggedIn && !isRefreshing ? routes.CONTACTS : routes.WELCOME
+              }
             />
           }
         />
         <Route
-          path="/welcome"
+          path={routes.WELCOME}
           element={<PublicRoute component={<HomePage />} />}
         />
         <Route
-          path="register"
+          path={routes.REGISTER}
           element={<PublicRoute component={<RegisterPage />} />}
         />
         <Route
-          path="login"
+          path={routes.LOGIN}
           element={<PublicRoute component={<LoginPage />} />}
         />
         <Route
-          path="contacts"
+          path={routes.CONTACTS}
           element={<PrivateRoute component={<ContactsPage />} />}
         />
         <Route
-          path="user"
+          path={routes.USER}
           element={<PrivateRoute component={<UserPage />} />}
         />
       </Route>

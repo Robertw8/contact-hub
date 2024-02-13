@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { Menu, UserName, UserButton } from './UserMenu.styled';
 import { logoutUser } from '../../redux/auth';
+import routes from '../../routes';
 import type { AppDispatch } from '../../redux';
 
 const UserMenu: React.FC = () => {
@@ -20,7 +21,7 @@ const UserMenu: React.FC = () => {
     <>
       {isLoggedIn && (
         <Menu>
-          <UserButton onClick={() => navigate('/contacts')}>
+          <UserButton onClick={() => navigate(routes.CONTACTS)}>
             Contacts
           </UserButton>
           <UserName>
@@ -28,7 +29,7 @@ const UserMenu: React.FC = () => {
             <UserButton
               type="text"
               color="#fff"
-              onClick={() => navigate('/user')}
+              onClick={() => navigate(routes.USER)}
             >
               {user.name}!
             </UserButton>
